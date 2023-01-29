@@ -1,16 +1,17 @@
 const {Router} = require('express')
+const { getTasks } = require('../controllers/task.controller')
+const { registerController, loginController } = require('../controllers/user.controller')
+const { checkJWT } = require('../middlewares/session.middleware')
 const router = Router()
 
 router.get('/', (req, res) => {
   res.send("Server rendering")
 })
 
-router.post('/register', (req, res) => {
-  res.send('Register user')
-})
+router.post('/register', registerController)
 
-router.post('/login', (req, res) => {
-  res.send('Login user')
-})
+router.post('/login', loginController)
+
+router.get('/tasks', checkJWT, getTasks)
 
 module.exports = router
