@@ -14,4 +14,8 @@ router.post('/login', loginController)
 
 router.get('/tasks', checkJWT, getTasks)
 
+router.get('/profile', checkJWT, (req, res) => {
+  res.send(req.user)
+})
+
 module.exports = router
