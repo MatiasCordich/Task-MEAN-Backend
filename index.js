@@ -4,6 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const { connectDB } = require('./database/database')
+const allRoutes = require('./routes/index')
 const app = express()
 
 const PORT = process.env.PORT || 3000
@@ -14,7 +15,7 @@ app.use(morgan('tiny'))
 app.use(cookieParser())
 
 
-app.use('/api', require('./routes/index'))
+app.use('/api', allRoutes)
 
 
 connectDB()

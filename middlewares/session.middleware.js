@@ -1,5 +1,4 @@
 const { verify } = require("jsonwebtoken")
-// require('dotenv').config()
 
 const checkJWT = async (req, res, next) => {
     
@@ -16,7 +15,6 @@ const checkJWT = async (req, res, next) => {
        verify(token, process.env.JWT_SECRET, (err, decoded) => {
          
         if (err) {
-            console.log(err)
             return res.status(500).send({msg: "INVALID_TOKEN"})
         } else {
             req.user = decoded
